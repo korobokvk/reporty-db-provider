@@ -1,16 +1,22 @@
-import { createUser as createUserController } from '../user/user'
+import { CreateUserController } from '../user/user'
 
 export const createUser = (call): void => {
+  const createUserController = new CreateUserController()
   call.on('data', (data, err) => {
     if (err) {
       throw err
     }
-    createUserController(data).then((response) => {
-      call.write(response)
-      call.end()
-    })
+    createUserController
+      .createUser(data)
+      .then((response) => {
+        call.write(response)
+        call.end()
+      })
+      .catch((err) => {
+        throw err
+      })
   })
-  call.on('end', (data, err) => {
+  call.on('end', (err) => {
     if (err) {
       throw err
     }

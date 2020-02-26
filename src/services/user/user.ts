@@ -1,11 +1,12 @@
 import { User } from '../../entity/User'
-import { connection } from '../../connection'
+import { getRepository, DeepPartial } from 'typeorm'
 
-export const createUser = ({ email, password }: { email: string; password: string }) =>
-  connection([User]).then(async (connect) => {
-    let user = new User()
-    user.email = email
-    user.password = password
-    const { data, ...response } = await connect.manager.save(user)
-    return response
-  })
+export class CreateUserController {
+  private userRepo = getRepository(User)
+  constructor() {}
+
+  public async createUser(user: DeepPartial<User>) {
+    const newUser = this.userRepo.create(user)
+    return await this.userRepo.save(newUser)
+  }
+}

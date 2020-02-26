@@ -1,10 +1,14 @@
+import { createUser as createUserController } from '../user/user'
+
 export const createUser = (call): void => {
   call.on('data', (data, err) => {
     if (err) {
       throw err
     }
-    call.write({ success: true })
-    call.end()
+    createUserController(data).then((response) => {
+      call.write(response)
+      call.end()
+    })
   })
   call.on('end', (data, err) => {
     if (err) {

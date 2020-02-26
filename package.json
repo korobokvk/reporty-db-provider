@@ -18,8 +18,9 @@
   },
   "homepage": "https://github.com/korobokvk/reporty-db-provider#readme",
   "devDependencies": {
-    "@types/node": "^13.7.0",
+    "@types/node": "^13.7.4",
     "nodemon": "^2.0.2",
+    "ts-node": "^8.6.2",
     "tslint": "^6.0.0",
     "typescript": "^3.7.5"
   },
@@ -27,6 +28,9 @@
     "@grpc/proto-loader": "^0.5.3",
     "@types/protobufjs": "^6.0.0",
     "grpc": "^1.24.2",
-    "rxjs": "^6.5.4"
+    "pg": "^7.18.2",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.4",
+    "typeorm": "^0.2.22"
   }
 }

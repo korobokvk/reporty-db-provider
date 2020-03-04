@@ -1,26 +1,13 @@
 import { CreateUserController } from '../user/user'
 
-export const createUser = (call): void => {
+export const createUser = (call, callback): void => {
   const createUserController = new CreateUserController()
-  call.on('data', (data, err) => {
-    if (err) {
-      throw err
-    }
-    createUserController
-      .createUser(data)
-      .then((response) => {
-        call.write(response)
-        call.end()
-      })
-      .catch((err) => {
-        throw err
-      })
-  })
-  call.on('end', (err) => {
-    if (err) {
-      throw err
-    }
-  })
+  createUserController
+    .createUser(call.request)
+    .then((response) => {
+      callback(null, response)
+    })
+    .catch((err) => callback(err, null))
 }
 
 export const isAuthUser = (JWT) => {

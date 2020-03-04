@@ -7,6 +7,10 @@ export class CreateUserController {
 
   public async createUser(user: DeepPartial<User>) {
     const newUser = this.userRepo.create(user)
-    return await this.userRepo.save(newUser)
+    try {
+      return await this.userRepo.save(newUser)
+    } catch (error) {
+      throw error
+    }
   }
 }

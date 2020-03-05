@@ -1,6 +1,6 @@
 import grpc from 'grpc'
 import { app } from './utils/grpc.util'
-import { createUser } from './services/rpc/auth.service'
+import { createUser, userAuth } from './services/rpc/auth.service'
 import { createConnection } from 'typeorm'
 import config from './ormconfig'
 import 'reflect-metadata'
@@ -10,6 +10,7 @@ const getServer = () => {
   const server = new grpc.Server()
   server.addService(app['DataBaseProvider'].service, {
     createUser,
+    userAuth,
   })
   return server
 }

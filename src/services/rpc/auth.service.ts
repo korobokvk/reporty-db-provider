@@ -1,9 +1,20 @@
-import { CreateUserController } from '../user/user'
+import { CreateUserController } from '../../controllers/user/create-user.controller'
+import { AuthUserController } from '../../controllers/user/auth-user.controller'
 
 export const createUser = (call, callback): void => {
   const createUserController = new CreateUserController()
   createUserController
     .createUser(call.request)
+    .then((response) => {
+      callback(null, response)
+    })
+    .catch((err) => callback(err, null))
+}
+
+export const userAuth = (call, callback): void => {
+  const authUserController = new AuthUserController()
+  authUserController
+    .authUser(call.request)
     .then((response) => {
       callback(null, response)
     })

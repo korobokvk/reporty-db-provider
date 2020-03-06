@@ -1,9 +1,9 @@
 import { Crud } from '../interfaces/crud.interface'
-import { getRepository, Repository, getConnectionManager, getManager } from 'typeorm'
+import { getRepository, Repository, getConnectionManager, EntitySchema } from 'typeorm'
 
 export class Controller<T> implements Crud<T> {
-  public repo
-  public model
+  public repo: Repository<T>
+  public model: EntitySchema<T>
 
   constructor(model) {
     this.model = model

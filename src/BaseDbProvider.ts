@@ -1,6 +1,6 @@
 import { Crud } from './interfaces/crud.interface'
 
-export class BaseDbModel<T> {
+export class BaseDbProvider<T> {
   public create
   public readOne
   public readAll

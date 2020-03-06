@@ -1,6 +1,7 @@
 import { FindOneOptions, EntitySchema } from 'typeorm'
 
 export interface Crud<T> {
+  model: EntitySchema<T>
   readAll(): Promise<Array<T>>
   delete(data: any): Promise<T>
   create(data: any): Promise<Array<T>>

@@ -1,9 +1,9 @@
 import { Controller } from '../../controllers/controller'
 import { getConnectionManager } from 'typeorm'
-import { BaseDbModel } from '../../BaseDb.model'
+import { BaseDbProvider } from '../../BaseDbProvider'
 
 export default class AuthService<T> {
-  constructor(private dbModel: BaseDbModel<T>) {}
+  constructor(private dbModel: BaseDbProvider<T>) {}
 
   public createUser = (call, callback): void => {
     this.dbModel

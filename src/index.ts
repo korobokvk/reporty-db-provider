@@ -1,22 +1,13 @@
 import grpc from 'grpc'
 import { app } from './utils/grpc.util'
-import AuthService from './services/rpc/auth.service'
-import { BaseDbModel } from './BaseDb.model'
-import { createConnection } from 'typeorm'
-import { User } from './entity/User'
-import { Controller } from './controllers/controller'
-import config from './ormconfig'
+import initDb from './initDd'
+
 import 'reflect-metadata'
 ;(async () => {
-  await createConnection(config)
-  const dbModel = await new BaseDbModel<User>(new Controller(User))
-  const authService = await new AuthService(dbModel)
+  const providerServiceMethods = await initDb()
   const getServer = () => {
     const server = new grpc.Server()
-    server.addService(app['DataBaseProvider'].service, {
-      createUser: authService.createUser,
-      userAuth: authService.userAuth,
-    })
+    server.addService(app['DataBaseProvider'].service, providerServiceMethods)
     return server
   }
 

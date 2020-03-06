@@ -1,24 +1,28 @@
-import { CreateUserController } from '../../controllers/user/create-user.controller'
-import { AuthUserController } from '../../controllers/user/auth-user.controller'
+import { Controller } from '../../controllers/controller'
+import { getConnectionManager } from 'typeorm'
+import { BaseDbModel } from '../../BaseDb.model'
 
-export const createUser = (call, callback): void => {
-  const createUserController = new CreateUserController()
-  createUserController
-    .createUser(call.request)
-    .then((response) => {
-      callback(null, response)
-    })
-    .catch((err) => callback(err, null))
-}
+export default class AuthService<T> {
+  constructor(private dbModel: BaseDbModel<T>) {}
 
-export const userAuth = (call, callback): void => {
-  const authUserController = new AuthUserController()
-  authUserController
-    .authUser(call.request)
-    .then((response) => {
-      callback(null, response)
-    })
-    .catch((err) => callback(err, null))
+  public createUser = (call, callback): void => {
+    this.dbModel
+      .create(call.request)
+      .then((response) => {
+        callback(null, response)
+      })
+      .catch((err) => callback(err, null))
+  }
+
+  public userAuth = (call, callback): void => {
+    const { request } = call
+    this.dbModel
+      .readOne(request.id)
+      .then((response) => {
+        callback(null, response)
+      })
+      .catch((err) => callback(err, null))
+  }
 }
 
 export const isAuthUser = (JWT) => {

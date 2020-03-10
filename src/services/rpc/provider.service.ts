@@ -1,8 +1,6 @@
-import { Controller } from '../../controllers/controller'
-import { getConnectionManager } from 'typeorm'
 import { BaseDbProvider } from '../../BaseDbProvider'
 
-export default class AuthService<T> {
+export default class ProviderService<T> {
   constructor(private dbModel: BaseDbProvider<T>) {}
 
   public createUser = (call, callback): void => {
@@ -14,10 +12,20 @@ export default class AuthService<T> {
       .catch((err) => callback(err, null))
   }
 
-  public userAuth = (call, callback): void => {
+  public findById = (call, callback): void => {
     const { request } = call
     this.dbModel
-      .readOne(request.id)
+      .readOne({ id: request.id })
+      .then((response) => {
+        callback(null, response)
+      })
+      .catch((err) => callback(err, null))
+  }
+
+  public findByEmail = (call, callback) => {
+    const { request } = call
+    this.dbModel
+      .readOne({ email: request.email })
       .then((response) => {
         callback(null, response)
       })

@@ -4,8 +4,9 @@ export default class ProviderService<T> {
   constructor(private dbModel: BaseDbProvider<T>) {}
 
   public createUser = (call, callback): void => {
+    const { request } = call
     this.dbModel
-      .create(call.request)
+      .create(request)
       .then((response) => {
         callback(null, response)
       })
@@ -31,10 +32,4 @@ export default class ProviderService<T> {
       })
       .catch((err) => callback(err, null))
   }
-}
-
-export const isAuthUser = (JWT) => {
-  // TODO: need to finish is auth method
-  console.log('Check user')
-  return true
 }

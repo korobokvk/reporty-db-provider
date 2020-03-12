@@ -16,7 +16,7 @@ export default class ProviderService<T> {
   public findById = (call, callback): void => {
     const { request } = call
     this.dbModel
-      .readOne({ id: request.id })
+      .readOne({ ...request })
       .then((response) => {
         callback(null, response)
       })
@@ -26,8 +26,9 @@ export default class ProviderService<T> {
   public findByEmail = (call, callback) => {
     const { request } = call
     this.dbModel
-      .readOne({ email: request.email })
+      .readOne({ ...request })
       .then((response) => {
+        console.log('DB RESP', response)
         callback(null, response)
       })
       .catch((err) => callback(err, null))

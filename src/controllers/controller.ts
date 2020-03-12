@@ -28,7 +28,11 @@ export class Controller<T> implements Crud<T> {
 
   public readOne = async (searchParam): Promise<T> => {
     try {
-      return await this.repo.findOne(searchParam)
+      const data = await this.repo.findOne(searchParam)
+      if (data) {
+        return data
+      }
+      throw new Error('Anything was found')
     } catch (error) {
       throw error
     }

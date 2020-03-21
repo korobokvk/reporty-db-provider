@@ -1,7 +1,8 @@
-FROM node:10.16
+FROM node:latest
 WORKDIR /usr/src/app
 COPY package.json package.json 
-RUN npm install
-COPY .dist /usr/src/app
+RUN npm install && npm install typescript -g && npm install grpc
+COPY . /usr/src/app
+RUN tsc
 
 CMD ["npm", "run", "start:prod"]

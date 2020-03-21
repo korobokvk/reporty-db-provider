@@ -1,8 +1,9 @@
 import { ConnectionOptions } from 'typeorm'
+const dbUrl = process.env.DB_URL
 
 const config: ConnectionOptions = {
   type: 'postgres',
-  host: 'host.docker.internal',
+  host: dbUrl,
   port: 5432,
   username: 'root',
   password: 'root',

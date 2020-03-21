@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: master
-        image: korobokvk/reporty-db-service
+        image: korobokvk/reporty-db-service:latest
         resources:
           requests:
             cpu: 100m

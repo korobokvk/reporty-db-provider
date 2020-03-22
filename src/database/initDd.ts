@@ -1,9 +1,9 @@
 import { createConnection } from 'typeorm'
-import ProviderService from './services/rpc/provider.service'
+import ProviderService from '../services/rpc/provider.service'
 import { BaseDbProvider } from './BaseDbProvider'
-import { User } from './entity/User'
-import { Controller } from './controllers/controller'
-import config from './database/ormconfig'
+import { User } from '../entity/User'
+import { Controller } from '../controllers/controller'
+import config from './ormconfig'
 
 const initDb = async () => {
   await createConnection(config)

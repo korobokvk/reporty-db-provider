@@ -1,6 +1,6 @@
 import grpc from 'grpc'
 import { app } from './utils/grpc.util'
-import initDb from './initDd'
+import initDb from './database/initDd'
 
 import 'reflect-metadata'
 ;(async () => {

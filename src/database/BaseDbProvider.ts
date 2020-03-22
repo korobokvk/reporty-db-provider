@@ -1,4 +1,4 @@
-import { Crud } from './interfaces/crud.interface'
+import { Crud } from '../interfaces/crud.interface'
 
 export class BaseDbProvider<T> {
   public create

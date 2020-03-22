@@ -1,4 +1,4 @@
-import { BaseDbProvider } from '../../BaseDbProvider'
+import { BaseDbProvider } from '../../database/BaseDbProvider'
 
 export default class ProviderService<T> {
   constructor(private dbModel: BaseDbProvider<T>) {}

@@ -9,7 +9,7 @@ const config: ConnectionOptions = {
   port: 5432,
   username: 'root',
   password: password,
-  database: 'database-1',
+  database: 'postgres',
   entities: ['src/entity/**/*.ts'],
   migrations: ['src/migration/**/*.ts'],
   subscribers: ['src/subscriber/**/*.ts'],

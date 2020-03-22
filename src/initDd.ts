@@ -3,7 +3,7 @@ import ProviderService from './services/rpc/provider.service'
 import { BaseDbProvider } from './BaseDbProvider'
 import { User } from './entity/User'
 import { Controller } from './controllers/controller'
-import config from './ormconfig'
+import config from './database/ormconfig'
 
 const initDb = async () => {
   await createConnection(config)

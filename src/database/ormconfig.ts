@@ -1,7 +1,10 @@
 import { ConnectionOptions } from 'typeorm'
 const dbUrl = process.env.DB_URL
 const isDev = process.env.DEV_ENV
+// Need to refactor this sh**
 const password = isDev ? 'root' : 'root1234'
+const baseFolder = isDev ? 'src' : 'dist'
+const fileFormat = isDev ? 'ts' : 'js'
 
 const config: ConnectionOptions = {
   type: 'postgres',
@@ -10,9 +13,9 @@ const config: ConnectionOptions = {
   username: 'root',
   password: password,
   database: 'postgres',
-  entities: ['src/entity/**/*.ts'],
-  migrations: ['src/migration/**/*.ts'],
-  subscribers: ['src/subscriber/**/*.ts'],
+  entities: [`${baseFolder}/entity/**/*.${fileFormat}`],
+  migrations: [`${baseFolder}/migration/**/*.${fileFormat}`],
+  subscribers: [`${baseFolder}/subscriber/**/*.${fileFormat}`],
   synchronize: true,
 }
 

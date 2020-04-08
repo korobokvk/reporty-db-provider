@@ -28,7 +28,6 @@ export default class ProviderService<T> {
     this.dbModel
       .readOne({ ...request })
       .then((response) => {
-        console.log('DB RESP', response)
         callback(null, response)
       })
       .catch((err) => callback(err, null))
